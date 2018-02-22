@@ -62,9 +62,11 @@ SWAGGER_SETTINGS = {
     'api_key': 'edx'
 }
 
+ENABLE_ENTERPRISE_INTEGRATION = True
+
 # These two settings are used in generate_fake_course_data.py.
 # Replace with correct values to generate local fake video data.
-LMS_BASE_URL = 'http://localhost:8000/'  # the base URL for your running local LMS instance
+LMS_BASE_URL = 'http://localhost:18000/'  # the base URL for your running local LMS instance
 COURSE_BLOCK_API_AUTH_TOKEN = 'paste auth token here'  # see README for instructions on how to configure this value
 
 # In Insights, we run this API as a separate service called "analyticsapi" to run acceptance/integration tests. Docker
@@ -73,5 +75,12 @@ COURSE_BLOCK_API_AUTH_TOKEN = 'paste auth token here'  # see README for instruct
 # even in DEBUG=True mode. Here, we add the Docker service name "analyticsapi" to the default set of local allowed
 # hosts.
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '::1', 'analyticsapi']
+
+JWT_AUTH.update({
+    'JWT_SECRET_KEY': 'lms-secret',
+    'JWT_ISSUER': 'http://edx.devstack.lms:18000/oauth2',
+    'JWT_AUDIENCE': None,
+    'JWT_VERIFY_AUDIENCE': False,
+})
 
 ########## END ANALYTICS DATA API CONFIGURATION

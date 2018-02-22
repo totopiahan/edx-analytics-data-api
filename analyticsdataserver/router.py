@@ -7,7 +7,8 @@ class AnalyticsApiRouter(object):
         return self._get_database(model._meta.app_label)
 
     def _get_database(self, app_label):
-        if app_label == 'v0':
+        # TODO: better way to pull in app label list here
+        if app_label == 'v0' or app_label == 'enterprise_data':
             return getattr(settings, 'ANALYTICS_DATABASE', 'default')
 
         return None

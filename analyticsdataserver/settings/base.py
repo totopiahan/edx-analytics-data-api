@@ -205,8 +205,13 @@ LOCAL_APPS = (
     'analytics_data_api.v0',
 )
 
+# TODO: Make optional
+OPTIONAL_APPS = (
+    'enterprise_data',
+)
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + OPTIONAL_APPS
 ########## END APP CONFIGURATION
 
 
@@ -242,6 +247,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True
         },
+        'enterprise_data': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO'
+        },
         # See https://elasticutils.readthedocs.io/en/latest/debugging.html
         # INFO-level logs tell us when nodes fail and are resurrected.
         'elasticsearch': {
@@ -256,7 +266,7 @@ LOGGING = {
         'elasticsearch.trace': {
             'handlers': ['null'],
             'propagate': False
-        }
+        },
     },
 }
 ########## END LOGGING CONFIGURATION
@@ -318,6 +328,14 @@ AGGREGATE_PAGE_SIZE = 10
 # We need to set this to None so that we can pass in a large number of Course IDs
 # to course_summaries/
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None
+
+JWT_AUTH = {
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_AUDIENCE': 'lms-key',
+    'JWT_ISSUER': 'http://127.0.0.1:8000/oauth2',
+    'JWT_DECODE_HANDLER': 'edx_rest_framework_extensions.utils.jwt_decode_handler',
+    'JWT_VERIFY_AUDIENCE': False,
+}
 
 ########## END ANALYTICS DATA API CONFIGURATION
 
