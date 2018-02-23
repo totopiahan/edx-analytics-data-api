@@ -205,7 +205,6 @@ LOCAL_APPS = (
     'analytics_data_api.v0',
 )
 
-# TODO: Make optional
 OPTIONAL_APPS = (
     'enterprise_data',
 )
@@ -303,6 +302,7 @@ REST_FRAMEWORK = {
 ########## ANALYTICS DATA API CONFIGURATION
 
 ANALYTICS_DATABASE = 'default'
+APPS_LABELS_FOR_ANALYTICS_DATABASE = ('v0', 'enterprise_data')
 DATABASE_ROUTERS = ['analyticsdataserver.router.AnalyticsApiRouter']
 
 ENABLE_ADMIN_SITE = False
