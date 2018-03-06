@@ -11,6 +11,9 @@ TEST_SETTINGS = analyticsdataserver.settings.test
 requirements:
 	pip install -q -r requirements/base.txt
 
+production-requirements:
+    pip install -r requirements.txt
+
 test.install_elasticsearch:
 	curl -L -O https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-$(ELASTICSEARCH_VERSION).zip
 	unzip elasticsearch-$(ELASTICSEARCH_VERSION).zip
