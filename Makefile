@@ -12,7 +12,7 @@ requirements:
 	pip install -q -r requirements/base.txt
 
 production-requirements:
-    pip install -r requirements.txt
+	pip install -r requirements.txt
 
 test.install_elasticsearch:
 	curl -L -O https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-$(ELASTICSEARCH_VERSION).zip
@@ -59,7 +59,13 @@ quality:
 
 validate: test.requirements test quality
 
+static:
+	python manage.py collectstatic --noinput
+
 migrate:
+    ./manage.py migrate --noinput --run-syncdb
+
+migrate-all:
 	$(foreach db_name,$(DATABASES),./manage.py migrate --noinput --run-syncdb --database=$(db_name);)
 
 loaddata: migrate
