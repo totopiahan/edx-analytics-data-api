@@ -197,7 +197,8 @@ THIRD_PARTY_APPS = (
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'django_countries',
-    'storages'
+    'storages',
+    'enterprise_data'
 )
 
 LOCAL_APPS = (
@@ -205,12 +206,8 @@ LOCAL_APPS = (
     'analytics_data_api.v0',
 )
 
-OPTIONAL_APPS = (
-    'enterprise_data',
-)
-
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + OPTIONAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
 
 
@@ -248,8 +245,8 @@ LOGGING = {
         },
         'enterprise_data': {
             'handlers': ['console'],
-            'propagate': True,
-            'level': 'INFO'
+            'level': 'INFO',
+            'propagate': True
         },
         # See https://elasticutils.readthedocs.io/en/latest/debugging.html
         # INFO-level logs tell us when nodes fail and are resurrected.
@@ -302,7 +299,6 @@ REST_FRAMEWORK = {
 ########## ANALYTICS DATA API CONFIGURATION
 
 ANALYTICS_DATABASE = 'default'
-APPS_LABELS_FOR_ANALYTICS_DATABASE = ('v0', 'enterprise_data')
 DATABASE_ROUTERS = ['analyticsdataserver.router.AnalyticsApiRouter']
 
 ENABLE_ADMIN_SITE = False

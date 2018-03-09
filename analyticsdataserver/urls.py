@@ -24,7 +24,7 @@ if settings.ENABLE_ADMIN_SITE:  # pragma: no cover
     admin.autodiscover()
     urlpatterns.append(url(r'^site/admin/', include(admin.site.urls)))
 
-if  'enterprise_data' in settings.INSTALLED_APPS and settings.ENABLE_ENTERPRISE_INTEGRATION:
+if  'enterprise_data' in settings.INSTALLED_APPS:
     urlpatterns.append(url(r'', include('enterprise_data.urls')))
 
 handler500 = 'analyticsdataserver.views.handle_internal_server_error'  # pylint: disable=invalid-name

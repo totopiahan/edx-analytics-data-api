@@ -62,8 +62,6 @@ SWAGGER_SETTINGS = {
     'api_key': 'edx'
 }
 
-ENABLE_ENTERPRISE_INTEGRATION = True
-
 # These two settings are used in generate_fake_course_data.py.
 # Replace with correct values to generate local fake video data.
 LMS_BASE_URL = 'http://localhost:8000/'  # the base URL for your running local LMS instance
