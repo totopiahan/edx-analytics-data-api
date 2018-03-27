@@ -63,7 +63,7 @@ static:
 	python manage.py collectstatic --noinput
 
 migrate:
-	./manage.py migrate --noinput --run-syncdb
+	./manage.py migrate --noinput --run-syncdb --database=default
 
 migrate-all:
 	$(foreach db_name,$(DATABASES),./manage.py migrate --noinput --run-syncdb --database=$(db_name);)
